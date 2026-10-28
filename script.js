@@ -29,7 +29,9 @@
 
 // STEP 5: Display the day name in the element with ID "warmUpDate"
 //         using document.getElementById("warmUpDate").innerHTML
-
+let now = new Date();
+let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+document.getElementById("warmUpDate").innerHTML = days[now.getDay()];
 
 // ============================================
 //  PART 1: Current Date Display
@@ -50,7 +52,7 @@
 
 // STEP 10: Build the date string: month + "/" + day + "/" + year
 //          Display it in the element with ID "myDate"
-
+document.getElementById("myDate").innerHTML = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()}`;
 
 // ============================================
 //  PART 2: Elapsed Timer
@@ -61,6 +63,7 @@
 
 // STEP 11: Record the start time using new Date().getTime()
 //          This gives you the current time in milliseconds.
+let start = (new Date()).getTime();
 
 // STEP 12: Create a variable to hold the timer ID (for stopping later).
 //          Use setInterval() with a delay of 10 milliseconds.
@@ -69,7 +72,9 @@
 //          b) Calculate elapsed seconds: (currentTime - startTime) / 1000
 //          c) Display the elapsed time using .toFixed(3)
 //             in the element with ID "myTimer"
-
+setInterval(() => {
+    document.getElementById("myTimer").innerHTML = (new Date()).getTime() - start;
+}, 10);
 
 // ============================================
 //  PART 3: Start/Stop Toggle Button
@@ -83,6 +88,7 @@
 
 // STEP 13: Create a variable to track whether the timer is
 //          currently running (let running = true;)
+let running = true;
 
 // STEP 14: Add a click event listener to the button (ID "myBtn").
 //          Inside the listener:
