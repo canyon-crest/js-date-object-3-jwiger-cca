@@ -72,8 +72,8 @@ let start = (new Date()).getTime();
 //          b) Calculate elapsed seconds: (currentTime - startTime) / 1000
 //          c) Display the elapsed time using .toFixed(3)
 //             in the element with ID "myTimer"
-setInterval(() => {
-    document.getElementById("myTimer").innerHTML = (new Date()).getTime() - start;
+let timer = setInterval(() => {
+    document.getElementById("myTimer").innerHTML = (((new Date()).getTime() - start) / 1000).toFixed(3);
 }, 10);
 
 // ============================================
@@ -101,3 +101,18 @@ let running = true;
 //             - Start a new setInterval (same as STEP 12)
 //             - Change button innerHTML to "Stop"
 //             - Set running to true
+let myBtn = document.getElementById("myBtn");
+myBtn.addEventListener("click", () => {
+    if (running) {
+        clearInterval(timer);
+        running = false;
+        myBtn.innerHTML = "Start";
+    } else {
+        start = (new Date()).getTime();
+        timer = setInterval(() => {
+            document.getElementById("myTimer").innerHTML = (((new Date()).getTime() - start) / 1000).toFixed(3);
+        }, 10);
+        running = true;
+        myBtn.innerHTML = "Stop";
+    }
+});
